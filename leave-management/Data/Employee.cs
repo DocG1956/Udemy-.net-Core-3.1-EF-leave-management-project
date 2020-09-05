@@ -3,7 +3,7 @@ using System;
 
 namespace leave_management.Data
 {
-    public class Employee : IdentityUser
+    public class Employee : IdentityUser //Inheriting IdentityUser will add these columns to the AspnetUser table which was autocreated during project creation
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }
