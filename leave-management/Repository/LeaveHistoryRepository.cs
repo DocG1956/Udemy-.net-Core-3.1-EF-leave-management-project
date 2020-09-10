@@ -7,36 +7,46 @@ using System.Threading.Tasks;
 
 namespace leave_management.Repository
 {
-    public class LeaveHistoryRepository : ILeaveTypeRepository
+    public class LeaveHistoryRepository : ILeaveHistoryRepository
     {
-        public bool Create(LeaveType entity)
+        private readonly ApplicationDbContext _db;
+
+        public LeaveHistoryRepository(ApplicationDbContext db)
         {
-            throw new NotImplementedException();
+            _db = db;
         }
 
-        public bool Delete(LeaveType entity)
+        public bool Create(LeaveHistory entity)
         {
-            throw new NotImplementedException();
+            _db.LeaveHistories.Add(entity);
+            return Save();
         }
 
-        public ICollection<LeaveType> FindAll()
+        public bool Delete(LeaveHistory entity)
         {
-            throw new NotImplementedException();
+            _db.LeaveHistories.Remove(entity);
+            return Save();
         }
 
-        public LeaveType FindById(int id)
+        public ICollection<LeaveHistory> FindAll()
         {
-            throw new NotImplementedException();
+            return _db.LeaveHistories.ToList();
+        }
+
+        public LeaveHistory FindById(int id)
+        {
+            return _db.LeaveHistories.Find(id);
         }
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            return _db.SaveChanges() > 0;
         }
 
-        public bool Update(LeaveType entity)
+        public bool Update(LeaveHistory entity)
         {
-            throw new NotImplementedException();
+            _db.LeaveHistories.Update(entity);
+            return Save();
         }
     }
 }

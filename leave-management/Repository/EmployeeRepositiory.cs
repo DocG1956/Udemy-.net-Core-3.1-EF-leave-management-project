@@ -9,6 +9,13 @@ namespace leave_management.Repository
 {
     public class EmployeeRepositiory : IEmployeeRepository
     {
+        private readonly ApplicationDbContext _db;
+
+        public EmployeeRepositiory(ApplicationDbContext db)
+        {
+            _db = db;
+        }
+
         public bool Create(Employee entity)
         {
             throw new NotImplementedException();
